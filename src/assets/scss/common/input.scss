@@ -1,0 +1,11 @@
+.input {
+  font-size: 16px;
+  padding: 8px 10px;
+
+  background: transparent;
+  border: 1px solid #ccc;
+
+  @media (max-width: #{$md3}px) {
+    font-size: 12px;
+  }
+}

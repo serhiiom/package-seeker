@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+@import 'utils/vars';
+
+// reset resets default browser styles
+@import 'reset';
+
+@import 'common/layout';
+@import 'common/input';
+
+@import 'blocks/packages';
+@import 'blocks/modal';
+@import 'blocks/pagination';
+@import 'blocks/footer';

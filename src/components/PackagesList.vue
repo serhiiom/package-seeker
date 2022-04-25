@@ -1,10 +1,12 @@
 <script setup>
-import AppModal from '@/components/app/AppModal.vue'
+import { defineAsyncComponent, ref } from 'vue'
+import { useStore } from 'vuex'
 import AppPagination from '@/components/app/AppPagination.vue'
 import usePackages from '@/composables/packages'
 import usePaginationVisible from '@/composables/pagination-visible'
-import { ref } from 'vue'
-import { useStore } from 'vuex'
+const AppModal = defineAsyncComponent(() =>
+  import('@/components/app/AppModal.vue')
+)
 
 const store = useStore()
 
@@ -95,8 +97,8 @@ function openModal(packageName) {
       />
     </div>
 
-    <AppModal v-if="modalIsOpen" @close="modalIsOpen = false">
-      <pre>{{ currentPackage }}</pre>
+    <AppModal :open="modalIsOpen" @close="modalIsOpen = false">
+      <pre class="packages__current">{{ currentPackage }}</pre>
     </AppModal>
   </div>
 </template>

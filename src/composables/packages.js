@@ -1,4 +1,4 @@
-import { computed, reactive, watchEffect } from 'vue'
+import { reactive, computed, watch } from 'vue'
 import { useStore } from 'vuex'
 import debounce from '@/utils/debounce'
 
@@ -13,20 +13,26 @@ export default function usePackages() {
     perPage: 10
   })
 
+  const totalCount = computed(() => store.getters['packages/total'])
   const totalPages = computed(() =>
-    Math.ceil(store.getters['packages/total'] / filters.perPage)
+    Math.ceil(totalCount.value / filters.perPage)
   )
 
-  const debouncedGetPackages = debounce((params) => {
-    store.dispatch('packages/getPackages', params)
-  })
-
-  watchEffect(() => {
-    debouncedGetPackages({
+  const debouncedGetPackages = debounce(() => {
+    store.dispatch('packages/getPackages', {
       text: filters.text,
       size: filters.perPage,
       from: filters.page * filters.perPage - filters.perPage
     })
+  })
+
+  debouncedGetPackages()
+  watch([() => filters.text, () => filters.page], ([newText], [oldText]) => {
+    if (newText !== oldText) {
+      filters.page = 1
+    }
+
+    debouncedGetPackages()
   })
 
   return {

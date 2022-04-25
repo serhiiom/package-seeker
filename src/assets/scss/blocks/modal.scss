@@ -7,7 +7,7 @@
   max-height: 80vh;
   width: 80vw;
   max-width: #{$container-width}px;
-  padding: 2rem;
+  padding: 32px;
 
   background: #fff;
   border-radius: 10px;
@@ -16,11 +16,20 @@
   overflow: auto;
   z-index: 1000;
 
+  -ms-overflow-style: none;
+
   &::-webkit-scrollbar {
     display: none;
   }
 
-  -ms-overflow-style: none;
+  @media (max-width: #{$md2}px) {
+    padding: 24px;
+  }
+
+  @media (max-width: #{$md3}px) {
+    padding: 16px;
+  }
+
 
   &-backdrop {
     position: fixed;

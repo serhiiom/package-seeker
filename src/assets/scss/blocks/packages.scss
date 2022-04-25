@@ -51,6 +51,16 @@
   &__table {
     overflow: auto;
   }
+
+  &__current {
+    @media (max-width: #{$md2}px) {
+      font-size: 14px;
+    }
+
+    @media (max-width: #{$md3}px) {
+      font-size: 12px;
+    }
+  }
 }
 
 .table-packages {
